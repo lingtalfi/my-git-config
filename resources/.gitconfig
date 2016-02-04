@@ -1,0 +1,52 @@
+[user] 
+	name = zouzou
+	email = zouzou@gmail.com
+
+[alias]
+	ss = status -s
+	s = status -sb
+	st = status
+	co = checkout
+	br = branch
+	b = branch -a -vv
+	rb = rebase
+	r = remote -v
+	ci = commit
+	pp = push --tags -f origin master; 
+	ppa = push --tags -f alice master; 
+	d = log --decorate --graph --oneline --all -10
+	dd = log --decorate --graph --oneline --all
+	ddd = log --decorate --pretty=format:'%h %Cblue%s%Creset %ci'
+	l = log --pretty=oneline --abbrev-commit --abbrev=4 --decorate -25
+	days = "!days() { git log --pretty=format:%cd --date=short | uniq; }; days"
+	stat = "!/bin/bash -c 'stat() { echo -n Number of revisions:; git log --oneline | wc -l; echo -n Number of developers:; git shortlog -s | wc -l; echo -n Number of days:; git days | wc -l; echo -n \"The working directory: \"; du -sh -I .git | awk \"{print \\$1}\"; echo -n \"The git directory: \"; du -sh .git | awk \"{print \\$1}\"; echo -n Number of files in the working dir:; git ls-files | wc -l; }; stat'"		
+	snapshot = "!snapshot() { COMMENT=wip; if [ \"$*\" ]; then COMMENT=\"$*\"; fi; git add -A; git commit -m \"$COMMENT\"; }; snapshot"
+	snap = "!snapshot() { COMMENT=wip; if [ \"$*\" ]; then COMMENT=\"$*\"; fi; git add -A; git commit -m \"$COMMENT\"; }; snapshot"
+
+	create-file = "!createFile() { for name in \"$@\"; do echo \"$name\">\"$name.txt\"; done; }; createFile"
+	simple = "!simpleCommit() { for name in \"$@\"; do git create-file \"$name\"; git snap $name; done; }; simpleCommit"
+	t = "!simpleTag() { git tag -a \"$1\" -m \"$1\"; }; simpleTag"
+
+	list-remote-branches = "!listRemoteBranches() { git branch -r | sed \"/->/d; s/ origin\\///g\"; }; listRemoteBranches"
+	checkout-remote-branches = "!checkoutRemoteBranches() { for name in $(git list-remote-branches); do git checkout \"$name\"; done; }; checkoutRemoteBranches"
+	clone-wb = "!cloneWithBranches() { git clone \"$1\" \"$2\"; cd \"$2\"; git checkout-remote-branches; git remote rm origin; }; cloneWithBranches"
+	
+
+
+
+	
+[core]
+	editor = "subl -n -w"
+	excludesfile = /Users/zouzou/.gitignore_global
+[filter "lfs"]
+	clean = git-lfs clean %f
+	smudge = git-lfs smudge %f
+	required = true
+[difftool "sourcetree"]
+	cmd = opendiff \"$LOCAL\" \"$REMOTE\"
+	path = 
+[mergetool "sourcetree"]
+	cmd = /Applications/SourceTree.app/Contents/Resources/opendiff-w.sh \"$LOCAL\" \"$REMOTE\" -ancestor \"$BASE\" -merge \"$MERGED\"
+	trustExitCode = true
+[credential]
+	helper = store --file /users/zouzou/my_git_passwords.txt
