@@ -7,15 +7,21 @@ a copy of my .gitconfig file.
 
 
 
+
+My config files
+-------------------
+
 There are two files (in the resources dir):
 
-- .gitconfig, which contains all my aliases, and more. This file should be in your user home directory
-- my_git_passwords.txt, which is referenced by the .gitconfig, and stores my git passwords (to avoid typing the password everytime I push to the github.com repository). This file should be where you define it in the .gitconfig  (zouzou's home directory in this example).
+- [.gitconfig](https://github.com/lingtalfi/my-git-config/blob/master/resources/.gitconfig), which contains all my aliases, and more. This file should be in your user home directory
+- [my_git_passwords.txt](https://github.com/lingtalfi/my-git-config/blob/master/resources/my_git_passwords.txt), which is referenced by the .gitconfig, and stores my git passwords (to avoid typing the password everytime I push to the github.com repository). This file should be where you define it in the .gitconfig  (zouzou's home directory in this example).
 
 
 The my_git_passwords.txt actually stores two imaginary repositories: zouzou and zouzouSister.
 
 
+My workflow with git
+-------------------------
 
 Basically, with this config, I spend most of my time using the following commands:
 
