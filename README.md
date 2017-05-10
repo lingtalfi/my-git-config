@@ -30,3 +30,36 @@ git dd (list the commits)
 git ddd (list the commits with timestamps)
 git ss (see the current status)
 git pp      (push to github.com, include pushing tags if any)
+
+
+
+Multiple accounts trick
+-----------------------------
+
+I have two git accounts, with two separated emails.
+Usually I commit with account A, but I have one repository RR which needs to be committed using account B.
+
+I like to just hop into the local project dir and do my commands:
+
+```bash
+git snap my update
+git pp
+```
+
+However, if I do so in the RR repository, I get a permission denied error,
+because git uses the wrong account (account A instead of account B).
+
+To fix this, I open the **.git/config** file of the RR projects, and add the following at the end of the file:
+
+```bash
+[user]
+	name = karayabin
+	name = karayabin@gmail.com
+[credential]
+	username = karayabin		
+```
+
+Now, it works: I can hop into RR and push/commit.
+Hope this helps.
+
+
