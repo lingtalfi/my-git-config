@@ -11,6 +11,7 @@
 	b = branch -a -vv
 	rb = rebase
 	r = remote -v
+	rr = "!myreset() { git add .; git reset --hard; }; myreset"
 	ci = commit
 	pp = push --tags -f origin master; 
 	ppa = push --tags -f alice master; 
